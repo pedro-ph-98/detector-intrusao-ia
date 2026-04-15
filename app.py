@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 import numpy as np
 
-# 1. Configuração de Estilo "Cyber"
+
 st.set_page_config(page_title="CyberShield Pro", page_icon="🛡️", layout="wide")
 
-# Custom CSS para dar um ar de terminal/painel de segurança
+#CSS  terminal/painel de segurança
 st.markdown("""
     <style>
     .main {
@@ -69,7 +69,7 @@ with col_display:
             bytes_received, total_bytes, 1 if is_internal else 0
         ]], columns=['src_port', 'dst_port', 'protocol', 'bytes_sent', 'bytes_received', 'total_bytes', 'is_internal_traffic'])
         
-        # Predição e Probabilidade (Isso é o diferencial!)
+        # Predição e Probabilidade 
         prediction = model.predict(input_df)[0]
         probs = model.predict_proba(input_df)[0]
         result_name = le_attack.inverse_transform([prediction])[0]
@@ -90,7 +90,7 @@ with col_display:
             st.error(f"**Atenção:** Padrão compatível com {result_name.upper()} detectado.")
             st.progress(int(confidence), text="Nível de Risco")
             
-            # Recomendações de ADS/Segurança
+            # Recomendações de Segurança
             with st.expander("🛡️ Próximos Passos Sugeridos"):
                 st.write(f"1. Bloquear IP de origem na porta {src_port}.")
                 st.write(f"2. Isolar o host de destino ({dst_port}) para análise de logs.")
